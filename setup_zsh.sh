@@ -59,30 +59,35 @@ echo "=== Configuring .zshrc ==="
 # Backup existing .zshrc
 cp ~/.zshrc ~/.zshrc.backup.$(date +%Y%m%d_%H%M%S)
 
-# Update or add ZSH_THEME
+# Remove old Catppuccin configuration if it exists anywhere
+sed -i '/^CATPPUCCIN_FLAVOR=/d' ~/.zshrc
+sed -i '/^CATPPUCCIN_SHOW_TIME=/d' ~/.zshrc
+
+# Update or add ZSH_THEME and add Catppuccin config right below it
 if grep -q "^ZSH_THEME=" ~/.zshrc; then
-    # Replace existing ZSH_THEME line
+    # Replace existing ZSH_THEME line and add Catppuccin config below in-place
+    sed -i "/^ZSH_THEME=/a\\
+CATPPUCCIN_FLAVOR=\"$FLAVOR\"\\
+CATPPUCCIN_SHOW_TIME=true" ~/.zshrc
     sed -i 's/^ZSH_THEME=.*/ZSH_THEME="catppuccin"/' ~/.zshrc
     echo "Updated existing ZSH_THEME setting"
 else
-    # Add ZSH_THEME if it doesn't exist
-    echo 'ZSH_THEME="catppuccin"' >> ~/.zshrc
+    # Find a good place to insert (before sourcing oh-my-zsh or at the beginning)
+    if grep -q "source.*oh-my-zsh.sh" ~/.zshrc; then
+        # Insert before the source line
+        sed -i "/source.*oh-my-zsh.sh/i\\
+ZSH_THEME=\"catppuccin\"\\
+CATPPUCCIN_FLAVOR=\"$FLAVOR\"\\
+CATPPUCCIN_SHOW_TIME=true\\
+" ~/.zshrc
+    else
+        # Insert at the beginning after shebang/comments
+        sed -i "1a\\
+ZSH_THEME=\"catppuccin\"\\
+CATPPUCCIN_FLAVOR=\"$FLAVOR\"\\
+CATPPUCCIN_SHOW_TIME=true" ~/.zshrc
+    fi
     echo "Added ZSH_THEME setting"
-fi
-
-# Add or update Catppuccin flavor configuration
-if grep -q "^CATPPUCCIN_FLAVOR=" ~/.zshrc; then
-    sed -i "s/^CATPPUCCIN_FLAVOR=.*/CATPPUCCIN_FLAVOR=\"$FLAVOR\"/" ~/.zshrc
-    echo "Updated CATPPUCCIN_FLAVOR setting"
-else
-    echo "CATPPUCCIN_FLAVOR=\"$FLAVOR\"" >> ~/.zshrc
-    echo "Added CATPPUCCIN_FLAVOR setting"
-fi
-
-# Add CATPPUCCIN_SHOW_TIME if not already present
-if ! grep -q "CATPPUCCIN_SHOW_TIME=" ~/.zshrc; then
-    echo 'CATPPUCCIN_SHOW_TIME=false' >> ~/.zshrc
-    echo "Added CATPPUCCIN_SHOW_TIME setting"
 fi
 
 echo ""
