@@ -81,7 +81,7 @@ fi
 
 # Add CATPPUCCIN_SHOW_TIME if not already present
 if ! grep -q "CATPPUCCIN_SHOW_TIME=" ~/.zshrc; then
-    echo 'CATPPUCCIN_SHOW_TIME=true' >> ~/.zshrc
+    echo 'CATPPUCCIN_SHOW_TIME=false' >> ~/.zshrc
     echo "Added CATPPUCCIN_SHOW_TIME setting"
 fi
 
