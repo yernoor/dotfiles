@@ -32,6 +32,15 @@ ln -sf /tmp/catppuccin-zsh/catppuccin.zsh-theme ~/.oh-my-zsh/themes/
 ln -sf /tmp/catppuccin-zsh/catppuccin-flavors/* ~/.oh-my-zsh/themes/catppuccin-flavors/
 
 echo ""
+echo "=== Installing zsh-autosuggestions Plugin ==="
+# Clone zsh-autosuggestions into custom plugins directory
+if [ -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+    echo "zsh-autosuggestions is already installed. Skipping..."
+else
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+echo ""
 echo "=== Select Catppuccin Flavor ==="
 echo "Available flavors:"
 echo "  1) latte (light theme)"
@@ -62,13 +71,15 @@ cp ~/.zshrc ~/.zshrc.backup.$(date +%Y%m%d_%H%M%S)
 # Remove old Catppuccin configuration if it exists anywhere
 sed -i '/^CATPPUCCIN_FLAVOR=/d' ~/.zshrc
 sed -i '/^CATPPUCCIN_SHOW_TIME=/d' ~/.zshrc
+sed -i '/^ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=/d' ~/.zshrc
 
 # Update or add ZSH_THEME and add Catppuccin config right below it
 if grep -q "^ZSH_THEME=" ~/.zshrc; then
     # Replace existing ZSH_THEME line and add Catppuccin config below in-place
     sed -i "/^ZSH_THEME=/a\\
 CATPPUCCIN_FLAVOR=\"$FLAVOR\"\\
-CATPPUCCIN_SHOW_TIME=true" ~/.zshrc
+CATPPUCCIN_SHOW_TIME=true\\
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=\"fg=cyan\"" ~/.zshrc
     sed -i 's/^ZSH_THEME=.*/ZSH_THEME="catppuccin"/' ~/.zshrc
     echo "Updated existing ZSH_THEME setting"
 else
@@ -79,15 +90,46 @@ else
 ZSH_THEME=\"catppuccin\"\\
 CATPPUCCIN_FLAVOR=\"$FLAVOR\"\\
 CATPPUCCIN_SHOW_TIME=true\\
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=\"fg=cyan\"\\
 " ~/.zshrc
     else
         # Insert at the beginning after shebang/comments
         sed -i "1a\\
 ZSH_THEME=\"catppuccin\"\\
 CATPPUCCIN_FLAVOR=\"$FLAVOR\"\\
-CATPPUCCIN_SHOW_TIME=true" ~/.zshrc
+CATPPUCCIN_SHOW_TIME=true\\
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=\"fg=cyan\"" ~/.zshrc
     fi
     echo "Added ZSH_THEME setting"
+fi
+
+# Add zsh-autosuggestions to plugins if not already present
+if grep -q "^plugins=(" ~/.zshrc; then
+    # Check if zsh-autosuggestions is already in the plugins list
+    if ! grep "plugins=(" ~/.zshrc | grep -q "zsh-autosuggestions"; then
+        # Add zsh-autosuggestions to existing plugins array
+        sed -i '/^plugins=(/,/)/ {
+            /^plugins=(/ a\    zsh-autosuggestions
+        }' ~/.zshrc
+        echo "Added zsh-autosuggestions to plugins"
+    else
+        echo "zsh-autosuggestions already in plugins list"
+    fi
+else
+    # No plugins line exists, create one
+    if grep -q "source.*oh-my-zsh.sh" ~/.zshrc; then
+        sed -i "/source.*oh-my-zsh.sh/i\\
+plugins=(\\
+    zsh-autosuggestions\\
+)\\
+" ~/.zshrc
+    else
+        echo "" >> ~/.zshrc
+        echo "plugins=(" >> ~/.zshrc
+        echo "    zsh-autosuggestions" >> ~/.zshrc
+        echo ")" >> ~/.zshrc
+    fi
+    echo "Created plugins array with zsh-autosuggestions"
 fi
 
 echo ""

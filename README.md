@@ -9,7 +9,12 @@ cd dotfiles
 
 ## ZSH with catppuccin theme
 
-Available themes:
+Installs:
+
+1. Oh-my-zsh with catppuccin theme
+2. zsh-autosuggestions plugin
+
+Available catppuccin themes:
 
 - latte
 - mocha
