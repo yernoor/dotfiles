@@ -1,0 +1,46 @@
+{    
+    "terminal.integrated.defaultProfile.linux": "zsh",
+
+    // glassic-linux: https://github.com/Fmstrat/glassit-linux
+    // "glassit-linux.opacity": 90,
+
+    // glassit-vsc: https://github.com/hikarin522/GlassIt-VSC
+    "glassit.alpha": 255,
+
+    // catppuccin for vscode: https://github.com/catppuccin/vscode
+    "workbench.colorTheme": "Catppuccin Macchiato",
+    "workbench.iconTheme": "catppuccin-macchiato",
+    "catppuccin.accentColor": "teal",
+    "editor.semanticHighlighting.enabled": true,
+    "terminal.integrated.minimumContrastRatio": 1,
+    "window.titleBarStyle": "custom",
+
+    // window settings
+    "workbench.activityBar.location": "top",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "window.zoomLevel": 1,
+    "window.menuBarVisibility": "compact",
+
+    // amazonq
+    "amazonQ.suppressPrompts": {
+        "amazonQChatPairProgramming": true,
+        "amazonQChatDisclaimer": true
+    },
+
+    // editor settings
+    "editor.fontFamily": "'Cascadia Code'",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "normal",
+    "editor.fontSize": 14,
+    
+
+    // https://github.com/ryanoasis/nerd-fonts/releases/
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', Consolas, 'Courier New'",
+    "terminal.integrated.fontWeight": "normal",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.shellIntegration.enabled": true, // false if loads slow
+    "terminal.integrated.cursorStyle": "line",
+
+    // disable github chat
+    "chat.disableAIFeatures": true
+}

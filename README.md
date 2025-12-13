@@ -43,3 +43,9 @@ Installs some useful [aliases](zsh/aliases.zsh) to zsh config
 chmod +x scripts/setup_aliases.sh
 ./scripts/setup_aliases.sh
 ```
+
+## Windows
+
+- [Powershell customization](windows/powershell/README.md)
+- [Terminal settings](windows/terminal)
+- [VSCode settings](windows/vscode)
