@@ -33,7 +33,6 @@
     "editor.fontWeight": "normal",
     "editor.fontSize": 14,
     
-
     // https://github.com/ryanoasis/nerd-fonts/releases/
     "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', Consolas, 'Courier New'",
     "terminal.integrated.fontWeight": "normal",
@@ -42,5 +41,15 @@
     "terminal.integrated.cursorStyle": "line",
 
     // disable github chat
-    "chat.disableAIFeatures": true
+    "chat.disableAIFeatures": true,
+    
+    // python extensions
+    // pylance: https://github.com/microsoft/pylance-release
+    // black: https://github.com/microsoft/vscode-black-formatter
+    "python.analysis.typeCheckingMode": "basic",
+    "docker.extension.enableComposeLanguageServer": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    }
 }
