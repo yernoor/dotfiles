@@ -46,6 +46,7 @@ chmod +x scripts/setup_aliases.sh
 
 ## Windows
 
+- Install font [JetbrainsMono Nerd](https://github.com/ryanoasis/nerd-fonts/releases/)
 - [Powershell customization](windows/powershell/README.md)
 - [Terminal settings](windows/terminal)
 - [VSCode settings](windows/vscode)
