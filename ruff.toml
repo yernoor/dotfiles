@@ -1,0 +1,51 @@
+target-version = "py312"
+line-length = 88
+
+[lint]
+select = [
+    "E",   # pycodestyle errors (PEP 8)
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "S",   # flake8-bandit (security)
+    # "D",   # pydocstyle
+    # "PL",  # pylint
+]
+
+ignore = [
+    "E501",   # line too long,
+    "S101",   # use of assert,
+    "S603",   # subprocess,
+    "S104",   # uvicorn host interface,
+    "D100",   # module docstrings,
+    "N806",   # variables naming,
+]
+
+[format]
+# Black-compatible formatter settings
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[lint.isort]
+lines-after-imports = 2
+
+# Black-style multi-line imports
+force-single-line = false
+force-wrap-aliases = false
+split-on-trailing-comma = false
+
+# Sorting
+force-sort-within-sections = false
+length-sort = false
+order-by-type = true
+
+[lint.pydocstyle]
+convention = "google"
+
+[lint.per-file-ignores]
+"tests/**/*.py" = ["S101", "PLR2004"]

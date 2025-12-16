@@ -42,14 +42,59 @@
 
     // disable github chat
     "chat.disableAIFeatures": true,
-    
+
     // python extensions
     // pylance: https://github.com/microsoft/pylance-release
     // black: https://github.com/microsoft/vscode-black-formatter
+    // ruff: https://github.com/astral-sh/ruff-vscode
     "python.analysis.typeCheckingMode": "basic",
     "docker.extension.enableComposeLanguageServer": false,
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnSave": true
-    }
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": { // ruff
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        },
+        "diffEditor.ignoreTrimWhitespace": false // git diff
+    },
+    "ruff.configuration": "~/dotfiles/ruff.toml", // change to your path of dotfiles
+    "autoDocstring.docstringFormat": "google",
+
+    // git diff
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "[markdown]": {
+        "diffEditor.ignoreTrimWhitespace": true
+    },
+
+    // jupyter
+    "accessibility.signals.notebookCellFailed": {
+        "sound": "on"
+    },
+    "notebook.formatOnSave.enabled": true,
+    "notebook.codeActionsOnSave": {
+        "notebook.source.fixAll": "explicit",
+        "notebook.source.organizeImports": "explicit"
+    },
+
+    // set pwsh as default on windows
+    // "terminal.integrated.profiles.windows": {
+    //     "PowerShell": {
+    //         "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+    //     },
+    //     "Command Prompt": {
+    //         "path": [
+    //             "${env:windir}\\Sysnative\\cmd.exe",
+    //             "${env:windir}\\System32\\cmd.exe"
+    //         ],
+    //         "args": [],
+    //         "icon": "terminal-cmd"
+    //     },
+    //     "Git Bash": {
+    //         "source": "Git Bash",
+    //         "icon": "terminal-git-bash"
+    //     }
+    // },
+    // "terminal.integrated.defaultProfile.windows": "PowerShell",
+
 }

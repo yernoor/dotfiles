@@ -14,4 +14,11 @@
 
 ### 6. [Data Wrangler](https://github.com/microsoft/vscode-data-wrangler)
 
+### 7. Python only
+
+1. [Pylance](https://github.com/microsoft/pylance-release)
+2. [Black](https://github.com/microsoft/vscode-black-formatter)
+3. [Ruff](https://github.com/astral-sh/ruff-vscode)
+4. [autoDocstring](https://github.com/NilsJPWerner/autoDocstring)
+
 ## Copy [settings](settings.json) to settings.json
