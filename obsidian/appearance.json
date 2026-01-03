@@ -1,0 +1,10 @@
+{
+  "cssTheme": "Catppuccin",
+  "accentColor": "",
+  "baseFontSizeAction": true,
+  "baseFontSize": 17,
+  "textFontFamily": "Helvetica",
+  "monospaceFontFamily": "",
+  "showViewHeader": true,
+  "showRibbon": true
+}
