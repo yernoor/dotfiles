@@ -1,0 +1,54 @@
+{
+  "prettier": {
+    "allowed": true,
+  },
+  "agent_ui_font_size": 16.0,
+  "buffer_font_family": ".ZedMono",
+  "agent_buffer_font_size": 16.0,
+  "ui_font_family": ".ZedSans",
+  "icon_theme": "Catppuccin Macchiato",
+  "notification_panel": {
+    "dock": "left",
+  },
+  "debugger": {
+    "dock": "right",
+  },
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "openrouter",
+      "model": "mistralai/devstral-2512:free",
+    },
+    "default_model": {
+      "provider": "openrouter",
+      "model": "mistralai/devstral-2512:free",
+    },
+    "dock": "right",
+    "model_parameters": [],
+  },
+  "base_keymap": "VSCode",
+  "ui_font_size": 16,
+  "buffer_font_size": 16.0,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Macchiato",
+  },
+  "terminal": {
+    "cursor_shape": "bar",
+    "font_family": "JetBrainsMono Nerd Font Mono",
+    "font_size": 16,
+    "font_weight": 400,
+  },
+  "language_models": {
+    "open_router": {
+      "api_url": "https://openrouter.ai/api/v1",
+      "available_models": [
+        {
+          "name": "mistralai/devstral-2512:free",
+          "display_name": "Mistral: Devstral 2 2512 (free)",
+          "max_tokens": 200000,
+        },
+      ],
+    },
+  },
+}
